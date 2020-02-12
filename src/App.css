@@ -1,0 +1,56 @@
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container {
+  margin: 80px auto 0 auto;
+  max-width: 1200px;
+}
+
+#navbar-logo {
+  max-height: 50px;
+  max-width: 100px;
+  height: 100%;
+  vertical-align: middle;
+}
+
+#navbar-logo-text {
+  max-height: 50px;
+}
+
+/*
+#login-heading {
+}
+
+#username-separated-3px {
+  letter-spacing: 3px;
+}
+
+#password-separated-3px {
+  letter-spacing: 3px;
+}
+
+#username-textfield {
+  margin-top: 20px;
+}
+
+#login-form-card {
+  margin-top: 40px;
+}
+
+#login-button {
+  margin-top: 10px;
+}
+
+.navbar-buttons {
+  margin: 0;
+  width: 100vw;
+  text-align: right;
+} */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
