@@ -1,10 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+// REDUX Stuff
+import { closeSignUpSuccess } from "./redux/actions/uiActions";
+import { logOutUser } from "./redux/actions/userActions";
+import { connect } from "react-redux";
 import "./App.css";
 import jwtDecode from "jwt-decode";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 // Components
 import Navbar from "./components/Navbar";
 import AuthRoute from "./util/AuthRoute";
@@ -44,49 +53,75 @@ const theme = createMuiTheme({
   }
 });
 
-let authenticated;
-
-const token = localStorage.FBIdToken;
-if (token) {
-  const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    window.location.href = "/login";
-    authenticated = false;
-  } else {
-    authenticated = true;
-  }
-}
-
 class App extends React.Component {
+  Alert = props => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  };
+
+  handleSignUpSuccessClose = () => {
+    this.props.closeSignUpSuccess();
+  };
+
   render() {
+    const token = localStorage.FBIdToken;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        window.location.href = "/login";
+        this.props.logOutUser();
+      }
+    }
+
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="App">
-          <Router>
-            <Navbar />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={home} />
-                <AuthRoute
-                  exact
-                  path="/login"
-                  component={login}
-                  authenticated={authenticated}
-                />
-                <AuthRoute
-                  exact
-                  path="/signup"
-                  component={signup}
-                  authenticated={authenticated}
-                />
-              </Switch>
-            </div>
-          </Router>
-        </div>
+        <Snackbar
+          open={this.props.ui.showSignUpSuccess}
+          autoHideDuration={6000}
+          onClose={this.handleSignUpSuccessClose}
+        >
+          <this.Alert onClose={this.handleClose} severity="success">
+            Succesfully signed up. You are now logged in!
+          </this.Alert>
+        </Snackbar>
+        <Router>
+          <Navbar />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={home} />
+              <AuthRoute
+                exact
+                path="/login"
+                component={login}
+                authenticated={this.props.user.authenticated}
+              />
+              <AuthRoute
+                exact
+                path="/signup"
+                component={signup}
+                authenticated={this.props.user.authenticated}
+              />
+            </Switch>
+          </div>
+        </Router>
       </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  ui: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  ui: state.ui,
+  user: state.user
+});
+
+const mapActionsToProps = {
+  closeSignUpSuccess,
+  logOutUser
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(App);
