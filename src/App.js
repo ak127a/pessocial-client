@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./App.css";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
@@ -7,10 +8,13 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
 // REDUX Stuff
-import { closeSignUpSuccess } from "./redux/actions/uiActions";
-import { logOutUser } from "./redux/actions/userActions";
+import {
+  closeSignUpSuccess,
+  closeLogInSuccess
+} from "./redux/actions/uiActions";
+import { logOutUser, getUserData } from "./redux/actions/userActions";
 import { connect } from "react-redux";
-import "./App.css";
+import { SET_AUTHENTICATED, SET_UNAUTHENTICATED } from "./redux/types";
 import jwtDecode from "jwt-decode";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -21,6 +25,8 @@ import AuthRoute from "./util/AuthRoute";
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+import store from "./redux/store";
+import Axios from "axios";
 
 const theme = createMuiTheme({
   palette: {
@@ -53,6 +59,19 @@ const theme = createMuiTheme({
   }
 });
 
+const token = localStorage.FBIdToken;
+if (token) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    window.location.href = "/login";
+    store.dispatch({ type: SET_UNAUTHENTICATED });
+  } else {
+    store.dispatch({ type: SET_AUTHENTICATED });
+    Axios.defaults.headers.common["Authorization"] = token;
+    store.dispatch(getUserData());
+  }
+}
+
 class App extends React.Component {
   Alert = props => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -62,26 +81,33 @@ class App extends React.Component {
     this.props.closeSignUpSuccess();
   };
 
-  render() {
-    const token = localStorage.FBIdToken;
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      if (decodedToken.exp * 1000 < Date.now()) {
-        window.location.href = "/login";
-        this.props.logOutUser();
-      }
-    }
+  handleLogInSuccessClose = () => {
+    this.props.closeLogInSuccess();
+  };
 
+  render() {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <Snackbar
           open={this.props.ui.showSignUpSuccess}
-          autoHideDuration={6000}
+          autoHideDuration={3000}
           onClose={this.handleSignUpSuccessClose}
         >
-          <this.Alert onClose={this.handleClose} severity="success">
+          <this.Alert
+            onClose={this.handleSignUpSuccessClose}
+            severity="success"
+          >
             Succesfully signed up. You are now logged in!
+          </this.Alert>
+        </Snackbar>
+        <Snackbar
+          open={this.props.ui.showLogInSuccess}
+          autoHideDuration={3000}
+          onClose={this.handleLogInSuccessClose}
+        >
+          <this.Alert onClose={this.handleLogInSuccessClose} severity="success">
+            Login Succesful
           </this.Alert>
         </Snackbar>
         <Router>
@@ -121,6 +147,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   closeSignUpSuccess,
+  closeLogInSuccess,
   logOutUser
 };
 

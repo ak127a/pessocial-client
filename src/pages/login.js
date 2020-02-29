@@ -144,15 +144,15 @@ class login extends Component {
                   )}
                 </Button>
               </form>
+              <Typography className={classes.clicktosignup} variant="h6">
+                Don't have an account? Click{" "}
+                <a href="/signup">
+                  <span style={{ color: "#4271ff" }}>here</span>
+                </a>{" "}
+                to sign up!
+              </Typography>
             </CardContent>
           </Card>
-          <Typography className={classes.clicktosignup} variant="h6">
-            Don't have an account? Click{" "}
-            <a href="/signup">
-              <span style={{ color: "#4271ff" }}>here</span>
-            </a>{" "}
-            to sign up!
-          </Typography>
         </Grid>
         <Grid item sm></Grid>
       </Grid>

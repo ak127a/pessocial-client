@@ -3,12 +3,15 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SHOW_SIGNUP_SUCCESS,
-  CLOSE_SIGNUP_SUCCESS
+  CLOSE_SIGNUP_SUCCESS,
+  SHOW_LOGIN_SUCCESS,
+  CLOSE_LOGIN_SUCCESS
 } from "../types";
 
 const initialState = {
   loading: false,
   showSignUpSuccess: false,
+  showLogInSuccess: false,
   errors: null
 };
 
@@ -36,10 +39,20 @@ export default function(state = initialState, action) {
         ...state,
         showSignUpSuccess: true
       };
+    case SHOW_LOGIN_SUCCESS:
+      return {
+        ...state,
+        showLogInSuccess: true
+      };
     case CLOSE_SIGNUP_SUCCESS:
       return {
         ...state,
         showSignUpSuccess: false
+      };
+    case CLOSE_LOGIN_SUCCESS:
+      return {
+        ...state,
+        showLogInSuccess: false
       };
     default:
       return state;

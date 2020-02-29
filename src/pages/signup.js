@@ -9,7 +9,6 @@ import {
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import logo from "../images/logo.png";
-import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 // Redux
@@ -175,15 +174,15 @@ class signup extends Component {
                   )}
                 </Button>
               </form>
+              <Typography className={classes.clicktosignup} variant="h6">
+                Already have an account yet? Click{" "}
+                <a href="/login">
+                  <span style={{ color: "#4271ff" }}>here</span>
+                </a>{" "}
+                to log in!
+              </Typography>
             </CardContent>
           </Card>
-          <Typography className={classes.clicktosignup} variant="h6">
-            Already have an account yet? Click{" "}
-            <a href="/login">
-              <span style={{ color: "#4271ff" }}>here</span>
-            </a>{" "}
-            to log in!
-          </Typography>
         </Grid>
         <Grid item sm></Grid>
       </Grid>

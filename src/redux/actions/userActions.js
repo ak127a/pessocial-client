@@ -4,7 +4,9 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  SHOW_SIGNUP_SUCCESS
+  SHOW_SIGNUP_SUCCESS,
+  SHOW_LOGIN_SUCCESS,
+  LOADING_USER
 } from "../types";
 import axios from "axios";
 
@@ -17,6 +19,7 @@ export const loginUser = (userData, history) => dispatch => {
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/");
+      dispatch({ type: SHOW_LOGIN_SUCCESS });
     })
     .catch(err => {
       dispatch({
@@ -53,11 +56,24 @@ export const logOutUser = () => dispatch => {
 
 export const getUserData = () => dispatch => {
   console.log("GET USER FIRED !!!!");
-
+  dispatch({ type: LOADING_USER });
   axios
     .get("/user")
     .then(res => {
       dispatch({ type: SET_USER, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const uploadImage = formData => dispatch => {
+  console.log("INSIDE UPLOAD IMAGE@!!!");
+  dispatch({ type: LOADING_USER });
+  axios
+    .post("/user/image", formData)
+    .then(() => {
+      dispatch(getUserData());
     })
     .catch(err => {
       console.log(err);
