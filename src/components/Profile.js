@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
+import EditDetails from "./EditDetails";
 // MUI
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
@@ -14,6 +15,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 // REDUX
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -43,6 +45,16 @@ const styles = {
         verticalAlign: "middle"
       }
     },
+    "& .logout-button": {
+      position: "relative",
+      minHeight: "50px",
+      width: "50%",
+      "& button ": {
+        position: "absolute",
+        top: "0%",
+        right: "0%"
+      }
+    },
     "& hr": {
       border: "none",
       margin: "0 0 10px 0"
@@ -66,18 +78,22 @@ const styles = {
 
 class Profile extends Component {
   handleImageChange = event => {
+    event.preventDefault();
     const image = event.target.files[0];
     // send it to server
     const formData = new FormData();
     formData.append("image", image, image.name);
     console.log("uploading now");
-
     this.props.uploadImage(formData);
   };
 
   handlerEditPicture = () => {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
+  };
+
+  handleLogOut = () => {
+    this.props.logOutUser();
   };
 
   render() {
@@ -144,6 +160,12 @@ class Profile extends Component {
               {` `}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
+            <EditDetails />
+            <Tooltip placement="right" title="Logout">
+              <IconButton onClick={this.handleLogOut}>
+                <KeyboardReturn color="primary" />
+              </IconButton>
+            </Tooltip>
           </div>
         </Paper>
       ) : (
@@ -156,7 +178,6 @@ class Profile extends Component {
                 color="primary"
                 component={Link}
                 to="/login"
-                id="margin-right-button"
               >
                 Login
               </Button>

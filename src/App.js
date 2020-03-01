@@ -59,12 +59,16 @@ const theme = createMuiTheme({
   }
 });
 
-const token = localStorage.FBIdToken;
+const token = window.localStorage.getItem("FBIdToken");
+console.log(token);
+
+// IMP !!!!!!!!! the window.location.href sometimes causes the page to refresh infinitely
+
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logOutUser());
     window.location.href = "/login";
-    store.dispatch({ type: SET_UNAUTHENTICATED });
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     Axios.defaults.headers.common["Authorization"] = token;
@@ -137,7 +141,10 @@ class App extends React.Component {
 
 App.propTypes = {
   ui: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  closeSignUpSuccess: PropTypes.func.isRequired,
+  closeLogInSuccess: PropTypes.func.isRequired,
+  logOutUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
