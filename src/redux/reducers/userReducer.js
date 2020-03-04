@@ -3,6 +3,8 @@ import {
   SET_ERRORS,
   CLEAR_ERRORS,
   LOADING_UI,
+  LIKE_SCREAM,
+  UNLIKE_SCREAM,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
   LOADING_USER
@@ -34,6 +36,24 @@ export default function(state = initialState, action) {
         authenticated: true,
         loading: false,
         ...action.payload
+      };
+    case LIKE_SCREAM:
+      return {
+        ...state,
+        likes: [
+          ...state.likes,
+          {
+            userHandle: state.credentials.handle,
+            screamId: action.payload.screamId
+          }
+        ]
+      };
+    case UNLIKE_SCREAM:
+      return {
+        ...state,
+        likes: state.likes.filter(
+          like => like.screamId !== action.payload.screamId
+        )
       };
     default:
       return state;
