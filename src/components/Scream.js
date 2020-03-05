@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import MyButton from "../util/MyButton";
+import DeleteScream from "./DeleteScream";
 
 //REDUX
 import { connect } from "react-redux";
@@ -24,6 +25,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 const styles = {
   card: {
     display: "flex",
+    position: "relative",
     marginBottom: 20
   },
   image: {
@@ -71,7 +73,10 @@ class Scream extends Component {
         likeCount,
         commentCount
       },
-      user: { authenticated }
+      user: {
+        authenticated,
+        credentials: { handle }
+      }
     } = this.props;
     const likeButton = !authenticated ? (
       <MyButton tip="Like">
@@ -88,6 +93,12 @@ class Scream extends Component {
         <FavoriteBorderIcon color="primary" />
       </MyButton>
     );
+
+    const deleteButton =
+      authenticated && userHandle === handle ? (
+        <DeleteScream screamId={screamId} />
+      ) : null;
+
     return (
       <Card className={classes.card}>
         <CardMedia
@@ -104,6 +115,7 @@ class Scream extends Component {
           >
             {userHandle}
           </Typography>
+          {deleteButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
