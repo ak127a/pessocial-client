@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logoonly from "../images/logoonly.png";
 import textonly from "../images/textonly.png";
 import PropTypes from "prop-types";
+import AddScream from "./AddScream";
 
 // MUI stuff
 import AppBar from "@material-ui/core/AppBar";
@@ -12,7 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import AddIcon from "@material-ui/icons/Add";
+
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
@@ -41,11 +42,7 @@ class Navbar extends Component {
           {authenticated && (
             <React.Fragment>
               <div className={classes.centredButtons}>
-                <Tooltip placement="bottom" title="Add new post">
-                  <IconButton>
-                    <AddIcon style={{ color: "#fff" }} />
-                  </IconButton>
-                </Tooltip>
+                <AddScream />
                 <Tooltip placement="bottom" title="Home">
                   <IconButton component={Link} to="/">
                     <HomeIcon style={{ color: "#fff" }} />

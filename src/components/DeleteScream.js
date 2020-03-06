@@ -5,10 +5,12 @@ import PropTypes from "prop-types";
 
 // MUI
 import Button from "@material-ui/core/Button";
+import red from "@material-ui/core/colors/red";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 // REDUX
 import { connect } from "react-redux";
@@ -41,6 +43,8 @@ class DeleteScream extends Component {
   };
 
   render() {
+    const deleteButtonColor = red[500];
+
     const { classes } = this.props;
     return (
       <React.Fragment>
@@ -60,7 +64,13 @@ class DeleteScream extends Component {
           <DialogTitle>Are you sure you want to delete this tweet?</DialogTitle>
           <DialogActions>
             <Button onClick={this.handleClose}>Cancel</Button>
-            <Button onClick={this.deleteScream} style={{ color: "#f00" }}>
+            <Button
+              color={deleteButtonColor}
+              variant="contained"
+              style={{ backgroundColor: "#f44336" }}
+              onClick={this.deleteScream}
+              startIcon={<DeleteIcon />}
+            >
               Delete
             </Button>
           </DialogActions>
