@@ -5,7 +5,8 @@ import {
   SHOW_SIGNUP_SUCCESS,
   CLOSE_SIGNUP_SUCCESS,
   SHOW_LOGIN_SUCCESS,
-  CLOSE_LOGIN_SUCCESS
+  CLOSE_LOGIN_SUCCESS,
+  STOP_LOADING_UI
 } from "../types";
 
 const initialState = {
@@ -53,6 +54,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         showLogInSuccess: false
+      };
+    case STOP_LOADING_UI:
+      return {
+        ...state,
+        loading: false
       };
     default:
       return state;

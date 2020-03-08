@@ -16,7 +16,7 @@ import CloseIcon from "@material-ui/icons/Close";
 
 // REDUX
 import { connect } from "react-redux";
-import { postScream } from "../redux/actions/dataActions";
+import { postScream, clearErrors } from "../redux/actions/dataActions";
 import MyButton from "../util/MyButton";
 import { CircularProgress } from "@material-ui/core";
 
@@ -57,6 +57,7 @@ class AddScream extends Component {
   };
 
   handleClose = () => {
+    this.props.clearErrors();
     this.setState({ open: false, errors: {} });
   };
 
@@ -69,8 +70,7 @@ class AddScream extends Component {
       this.setState({ errors: newProps.ui.errors });
     }
     if (!newProps.ui.errors && !newProps.ui.loading) {
-      this.setState({ body: "" });
-      this.handleClose();
+      this.setState({ body: "", open: false, errors: {} });
     }
   }
 
@@ -139,9 +139,10 @@ const mapStateToProps = state => ({
 
 AddScream.propTypes = {
   ui: PropTypes.object.isRequired,
-  postScream: PropTypes.func.isRequired
+  postScream: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { postScream })(
+export default connect(mapStateToProps, { postScream, clearErrors })(
   withStyles(styles)(AddScream)
 );
