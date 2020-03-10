@@ -57,14 +57,16 @@ const theme = createMuiTheme({
       hint: "rgba(0, 0, 0, 0.38)"
     }
   },
-  invisibleSeparator: {
-    border: "none",
-    margin: "4px"
-  },
-  visibleSeparator: {
-    width: "100%",
-    borderBottom: "1px solid rgba(0,0,0,0.2)",
-    marginBottom: "20px"
+  spread: {
+    invisibleSeparator: {
+      border: "none",
+      margin: "4px"
+    },
+    visibleSeparator: {
+      width: "100%",
+      borderBottom: "1px solid rgba(0,0,0,0.2)",
+      marginBottom: "20px"
+    }
   }
 });
 

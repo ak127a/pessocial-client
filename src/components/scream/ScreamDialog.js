@@ -25,16 +25,8 @@ import MyButton from "../../util/MyButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ChatIcon from "@material-ui/icons/Chat";
 
-const styles = {
-  visibleSeparator: {
-    width: "100%",
-    borderBottom: "1px solid rgba(0,0,0,0.2)",
-    marginBottom: "20px"
-  },
-  invisibleSeparator: {
-    border: "none",
-    margin: "4px"
-  },
+const styles = theme => ({
+  ...theme.spread,
   expandButton: {
     position: "abosolute",
     left: "100%"
@@ -58,7 +50,7 @@ const styles = {
     left: "90%",
     top: "4%"
   }
-};
+});
 
 class ScreamDialog extends Component {
   state = {

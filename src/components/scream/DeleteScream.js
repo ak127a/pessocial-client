@@ -69,9 +69,9 @@ class DeleteScream extends Component {
               variant="contained"
               style={{ backgroundColor: "#f44336" }}
               onClick={this.deleteScream}
-              startIcon={<DeleteIcon />}
+              startIcon={<DeleteIcon style={{ color: "#fff" }} />}
             >
-              Delete
+              <span style={{ color: "#fff" }}>Delete</span>
             </Button>
           </DialogActions>
         </Dialog>

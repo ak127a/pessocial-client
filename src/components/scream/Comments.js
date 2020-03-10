@@ -8,20 +8,21 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 
-const styles = {
+const styles = theme => ({
+  ...theme.spread,
   outerGrid: {
     paddingLeft: "10px",
     paddingRight: "10px"
   },
-  visibleSeparator: {
-    width: "100%",
-    borderBottom: "1px solid rgba(0,0,0,0.1)",
-    marginBottom: "20px"
-  },
-  invisibleSeparator: {
-    border: "none",
-    margin: "4px"
-  },
+  //   visibleSeparator: {
+  //     width: "100%",
+  //     borderBottom: "1px solid rgba(0,0,0,0.1)",
+  //     marginBottom: "20px"
+  //   },
+  //   invisibleSeparator: {
+  //     border: "none",
+  //     margin: "4px"
+  //   },
   commentImage: {
     maxWidth: "100%",
     height: "100px",
@@ -31,7 +32,7 @@ const styles = {
   commentData: {
     marginLeft: "20px"
   }
-};
+});
 
 class Comments extends Component {
   render() {
