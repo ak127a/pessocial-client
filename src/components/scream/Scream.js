@@ -19,7 +19,7 @@ import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import ChatIcon from "@material-ui/icons/Chat";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 
 const styles = {
   card: {

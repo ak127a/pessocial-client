@@ -13,7 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 // REDUX
 import { connect } from "react-redux";
-import { editUserDetails } from "../redux/actions/userActions";
+import { editUserDetails } from "../../redux/actions/userActions";
 
 const styles = theme => ({
   button: {

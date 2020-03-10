@@ -19,7 +19,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 // REDUX
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { uploadImage, logOutUser } from "../redux/actions/userActions";
+import { uploadImage, logOutUser } from "../../redux/actions/userActions";
 
 const styles = {
   profile: {

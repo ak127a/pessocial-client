@@ -16,8 +16,8 @@ import CloseIcon from "@material-ui/icons/Close";
 
 // REDUX
 import { connect } from "react-redux";
-import { postScream, clearErrors } from "../redux/actions/dataActions";
-import MyButton from "../util/MyButton";
+import { postScream, clearErrors } from "../../redux/actions/dataActions";
+import MyButton from "../../util/MyButton";
 import { CircularProgress } from "@material-ui/core";
 
 const styles = {

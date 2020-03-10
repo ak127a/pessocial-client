@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import logoonly from "../images/logoonly.png";
-import textonly from "../images/textonly.png";
+import logoonly from "../../images/logoonly.png";
+import textonly from "../../images/textonly.png";
 import PropTypes from "prop-types";
-import AddScream from "./AddScream";
+import AddScream from "../scream/AddScream";
 
 // MUI stuff
 import AppBar from "@material-ui/core/AppBar";

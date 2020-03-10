@@ -19,7 +19,7 @@ import jwtDecode from "jwt-decode";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
 //Pages
 import home from "./pages/home";
@@ -56,6 +56,15 @@ const theme = createMuiTheme({
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "rgba(0, 0, 0, 0.38)"
     }
+  },
+  invisibleSeparator: {
+    border: "none",
+    margin: "4px"
+  },
+  visibleSeparator: {
+    width: "100%",
+    borderBottom: "1px solid rgba(0,0,0,0.2)",
+    marginBottom: "20px"
   }
 });
 
