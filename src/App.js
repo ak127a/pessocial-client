@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./App.css";
+import user from "./pages/user";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
@@ -142,6 +143,7 @@ class App extends React.Component {
                 component={signup}
                 authenticated={this.props.user.authenticated}
               />
+              <Route exact path="/users/:handle" component={user} />
             </Switch>
           </div>
         </Router>
