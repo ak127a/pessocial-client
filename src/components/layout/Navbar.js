@@ -3,6 +3,7 @@ import logoonly from "../../images/logoonly.png";
 import textonly from "../../images/textonly.png";
 import PropTypes from "prop-types";
 import AddScream from "../scream/AddScream";
+import Notifications from "./Notifications";
 
 // MUI stuff
 import AppBar from "@material-ui/core/AppBar";
@@ -48,11 +49,7 @@ class Navbar extends Component {
                     <HomeIcon style={{ color: "#fff" }} />
                   </IconButton>
                 </Tooltip>
-                <Tooltip placement="bottom" title="Notifications">
-                  <IconButton>
-                    <NotificationsIcon style={{ color: "#fff" }} />
-                  </IconButton>
-                </Tooltip>
+                <Notifications />
               </div>
               <div className={classes.navbarbuttons}>
                 <Button startIcon={<ExitToAppIcon />} color="inherit">
