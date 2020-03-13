@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import logo from "../images/logo.png";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 // Redux

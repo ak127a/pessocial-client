@@ -7,6 +7,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import themeObject from "./util/theme";
 
 // REDUX Stuff
 import {
@@ -15,7 +16,7 @@ import {
 } from "./redux/actions/uiActions";
 import { logOutUser, getUserData } from "./redux/actions/userActions";
 import { connect } from "react-redux";
-import { SET_AUTHENTICATED, SET_UNAUTHENTICATED } from "./redux/types";
+import { SET_AUTHENTICATED } from "./redux/types";
 import jwtDecode from "jwt-decode";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -29,47 +30,10 @@ import signup from "./pages/signup";
 import store from "./redux/store";
 import Axios from "axios";
 
-const theme = createMuiTheme({
-  palette: {
-    common: { black: "#000", white: "#fff" },
-    background: { paper: "#fff", default: "#fafafa" },
-    primary: {
-      light: "rgba(118, 197, 246, 1)",
-      main: "rgba(42, 143, 255, 1)",
-      dark: "#303f9f",
-      contrastText: "#fff"
-    },
-    secondary: {
-      light: "rgba(248, 219, 250, 1)",
-      main: "rgba(255, 142, 221, 1)",
-      dark: "rgba(230, 143, 255, 1)",
-      contrastText: "#fff"
-    },
-    error: {
-      light: "#e57373",
-      main: "#f44336",
-      dark: "#d32f2f",
-      contrastText: "#fff"
-    },
-    text: {
-      primary: "rgba(0, 0, 0, 0.87)",
-      secondary: "rgba(0, 0, 0, 0.54)",
-      disabled: "rgba(0, 0, 0, 0.38)",
-      hint: "rgba(0, 0, 0, 0.38)"
-    }
-  },
-  spread: {
-    invisibleSeparator: {
-      border: "none",
-      margin: "4px"
-    },
-    visibleSeparator: {
-      width: "100%",
-      borderBottom: "1px solid rgba(0,0,0,0.2)",
-      marginBottom: "20px"
-    }
-  }
-});
+const theme = createMuiTheme(themeObject);
+
+Axios.defaults.baseURL =
+  "https://asia-east2-pessocial-a007f.cloudfunctions.net/api";
 
 const token = window.localStorage.getItem("FBIdToken");
 console.log(token);

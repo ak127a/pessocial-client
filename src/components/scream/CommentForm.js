@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 // MUI
-import Typography from "@material-ui/core/Typography";
+
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 
 // Redux
 import { connect } from "react-redux";
 import { submitComment } from "../../redux/actions/dataActions";
-import { CLEAR_ERRORS } from "../../redux/types";
 
 const styles = theme => ({
   ...theme.spread,

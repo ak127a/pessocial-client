@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
@@ -70,7 +70,7 @@ const StaticProfile = props => {
         <div className="profile-details">
           <MuiLink
             component={Link}
-            to={"/users/${handle}"}
+            to={`/users/${handle}`}
             color="primary"
             variant="h5"
           >
