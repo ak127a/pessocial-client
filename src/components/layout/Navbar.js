@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 
 // REDUX
 import { connect } from "react-redux";
+import { logOutUser } from "../../redux/actions/userActions";
 
 const styles = {
   navbarbuttons: { position: "absolute", right: "30px" },
@@ -31,6 +32,10 @@ const styles = {
 };
 
 class Navbar extends Component {
+  handleLogOut = () => {
+    this.props.logOutUser();
+  };
+
   render() {
     const { authenticated } = this.props;
     const { classes } = this.props;
@@ -51,7 +56,11 @@ class Navbar extends Component {
                 <Notifications />
               </div>
               <div className={classes.navbarbuttons}>
-                <Button startIcon={<ExitToAppIcon />} color="inherit">
+                <Button
+                  onClick={this.handleLogOut}
+                  startIcon={<ExitToAppIcon />}
+                  color="inherit"
+                >
                   Logout
                 </Button>
               </div>
@@ -79,11 +88,14 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  logOutUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   authenticated: state.user.authenticated
 });
 
-export default connect(mapStateToProps, null)(withStyles(styles)(Navbar));
+export default connect(mapStateToProps, { logOutUser })(
+  withStyles(styles)(Navbar)
+);
