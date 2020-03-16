@@ -25,6 +25,7 @@ const styles = theme => ({
   //   },
   commentImage: {
     maxWidth: "100%",
+    minWidth: "90px",
     height: "100px",
     objectFit: "cover",
     borderRadius: "50%"

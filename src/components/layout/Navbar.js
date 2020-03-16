@@ -22,12 +22,37 @@ import { connect } from "react-redux";
 import { logOutUser } from "../../redux/actions/userActions";
 
 const styles = {
-  navbarbuttons: { position: "absolute", right: "30px" },
+  navbarbuttons: {
+    position: "absolute",
+    right: "30px",
+    "@media only screen and (max-width: 600px)": {
+      right: "0",
+      width: "100%",
+      textAlign: "center"
+    }
+  },
   centredButtons: {
     width: "150px",
     position: "absolute",
     marginLeft: "-75px",
     left: "50%"
+  },
+  logoText: {
+    "@media only screen and (max-width: 600px)": {
+      display: "none"
+    }
+  },
+  logoImage: {
+    "@media only screen and (max-width: 600px)": {
+      position: "absolute",
+      left: "0px",
+      width: "80px",
+      height: "40px"
+    }
+  },
+  logoutButton: {
+    position: "absolute",
+    right: "12px"
   }
 };
 
@@ -42,8 +67,18 @@ class Navbar extends Component {
     return (
       <AppBar>
         <Toolbar>
-          <img src={logoonly} alt="logo" id="navbar-logo" />
-          <img src={textonly} alt="logo" id="navbar-logo-text" />
+          <img
+            src={logoonly}
+            className={classes.logoImage}
+            alt="logo"
+            id="navbar-logo"
+          />
+          <img
+            src={textonly}
+            className={classes.logoText}
+            alt="logo"
+            id="navbar-logo-text"
+          />
           {authenticated && (
             <React.Fragment>
               <div className={classes.centredButtons}>
@@ -55,7 +90,7 @@ class Navbar extends Component {
                 </Tooltip>
                 <Notifications />
               </div>
-              <div className={classes.navbarbuttons}>
+              <div className={classes.logoutButton}>
                 <Button
                   onClick={this.handleLogOut}
                   startIcon={<ExitToAppIcon />}

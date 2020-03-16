@@ -27,10 +27,11 @@ const styles = theme => ({
   ...theme.spread,
   expandButton: {
     position: "absolute",
-    left: "90%"
+    left: "88%"
   },
   profileImage: {
     maxWidth: "200px",
+    minWidth: "200px",
     height: "200px",
     borderRadius: "50%",
     objectFit: "cover"

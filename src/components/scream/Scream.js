@@ -21,13 +21,24 @@ import MyButton from "../../util/MyButton";
 
 const styles = {
   card: {
-    display: "flex",
     position: "relative",
     marginBottom: 20
   },
   image: {
-    minWidth: "200px",
-    borderRadius: "7px"
+    width: "70px",
+    height: "70px",
+    objectFit: "cover",
+    borderRadius: "50%",
+    "@media only screen and (max-width: 600px)": {
+      maxWidth: "100px"
+    }
+  },
+  screamHeader: {
+    display: "flex",
+    margin: "12px 0 0 25px"
+  },
+  handleTime: {
+    margin: "5px 0 0 15px"
   },
   content: {
     padding: 25,
@@ -62,24 +73,30 @@ class Scream extends Component {
 
     return (
       <Card className={classes.card}>
-        <CardMedia
-          className={classes.image}
-          image={userImage}
-          title="Profile image"
-        />
+        <div className={classes.screamHeader}>
+          <CardMedia
+            className={classes.image}
+            image={userImage}
+            title="Profile image"
+          />
+          <div className={classes.handleTime}>
+            <Typography
+              color="primary"
+              variant="h5"
+              component={Link}
+              to={`/users/${userHandle}`}
+            >
+              {userHandle}
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              {dayjs(createdAt).fromNow()}
+            </Typography>
+          </div>
+        </div>
+
         <CardContent className={classes.content}>
-          <Typography
-            color="primary"
-            variant="h5"
-            component={Link}
-            to={`/users/${userHandle}`}
-          >
-            {userHandle}
-          </Typography>
           {deleteButton}
-          <Typography variant="body2" color="textSecondary">
-            {dayjs(createdAt).fromNow()}
-          </Typography>
+
           <Typography variant="body1">{body}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>

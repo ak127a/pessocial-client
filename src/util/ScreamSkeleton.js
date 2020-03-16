@@ -11,7 +11,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const styles = theme => ({
   ...theme.spread,
   card: {
-    display: "flex",
     marginBottom: "20px"
   },
   cardContent: {
@@ -46,6 +45,22 @@ const styles = theme => ({
     width: "50%",
     backgroundColor: "rgba(0,0,0,0.6)",
     marginBottom: "10px"
+  },
+  image: {
+    width: "70px",
+    height: "70px",
+    objectFit: "cover",
+    borderRadius: "50%",
+    "@media only screen and (max-width: 600px)": {
+      maxWidth: "100px"
+    }
+  },
+  screamHeader: {
+    display: "flex",
+    margin: "12px 0 0 25px"
+  },
+  handleTime: {
+    margin: "5px 0 0 15px"
   }
 });
 
@@ -54,10 +69,18 @@ const ScreamSkeleton = props => {
 
   const content = Array.from({ length: 5 }).map((item, index) => (
     <Card className={classes.card} key={index}>
-      <CardMedia className={classes.cover} image={noImg} />
+      <div className={classes.screamHeader}>
+        <CardMedia
+          className={classes.image}
+          image={noImg}
+          title="Profile image"
+        />
+        <div className={classes.handleTime}>
+          <div className={classes.handle} />
+          <div className={classes.date} />
+        </div>
+      </div>
       <CardContent className={classes.cardContent}>
-        <div className={classes.handle} />
-        <div className={classes.date} />
         <div className={classes.fullLine} />
         <div className={classes.fullLine} />
         <div className={classes.halfLine} />
