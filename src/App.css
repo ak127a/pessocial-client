@@ -6,13 +6,6 @@ body {
   margin: 0;
 }
 
-/* body {
-  background-image: url(./images/bg9.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-} */
-
 .container {
   margin: 80px auto 0 auto;
   max-width: 1200px;

@@ -32,7 +32,7 @@ const styles = {
   },
   closeButton: {
     position: "absolute",
-    left: "90%",
+    right: "8px",
     top: "4%"
   }
 };

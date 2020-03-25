@@ -27,7 +27,7 @@ const styles = theme => ({
   ...theme.spread,
   expandButton: {
     position: "absolute",
-    left: "88%"
+    right: "8px"
   },
   profileImage: {
     maxWidth: "200px",
@@ -46,7 +46,7 @@ const styles = theme => ({
   },
   closeButton: {
     position: "absolute",
-    left: "90%",
+    right: "8px",
     top: "4%"
   }
 });

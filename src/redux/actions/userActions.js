@@ -6,6 +6,7 @@ import {
   SET_UNAUTHENTICATED,
   SHOW_SIGNUP_SUCCESS,
   SHOW_LOGIN_SUCCESS,
+  SHOW_LOGOUT_SUCCESS,
   LOADING_USER,
   MARK_NOTIFICATIONS_READ
 } from "../types";
@@ -53,6 +54,7 @@ export const logOutUser = () => dispatch => {
   localStorage.removeItem("FBIdToken");
   delete axios.defaults.headers.common["Authorization"];
   dispatch({ type: SET_UNAUTHENTICATED });
+  dispatch({ type: SHOW_LOGOUT_SUCCESS });
 };
 
 export const getUserData = () => dispatch => {

@@ -12,7 +12,8 @@ import themeObject from "./util/theme";
 // REDUX Stuff
 import {
   closeSignUpSuccess,
-  closeLogInSuccess
+  closeLogInSuccess,
+  closeLogOutSuccess
 } from "./redux/actions/uiActions";
 import { logOutUser, getUserData } from "./redux/actions/userActions";
 import { connect } from "react-redux";
@@ -65,6 +66,10 @@ class App extends React.Component {
     this.props.closeLogInSuccess();
   };
 
+  handleLogOutSuccessClose = () => {
+    this.props.closeLogOutSuccess();
+  };
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -79,6 +84,18 @@ class App extends React.Component {
             severity="success"
           >
             Succesfully signed up. You are now logged in!
+          </this.Alert>
+        </Snackbar>
+        <Snackbar
+          open={this.props.ui.showLogOutSuccess}
+          autoHideDuration={3000}
+          onClose={this.handleLogOutSuccessClose}
+        >
+          <this.Alert
+            onClose={this.handleLogOutSuccessClose}
+            severity="success"
+          >
+            Succesfully logged out.
           </this.Alert>
         </Snackbar>
         <Snackbar
@@ -126,6 +143,7 @@ App.propTypes = {
   user: PropTypes.object.isRequired,
   closeSignUpSuccess: PropTypes.func.isRequired,
   closeLogInSuccess: PropTypes.func.isRequired,
+  closeLogOutSuccess: PropTypes.func.isRequired,
   logOutUser: PropTypes.func.isRequired
 };
 
@@ -135,6 +153,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
+  closeLogOutSuccess,
   closeSignUpSuccess,
   closeLogInSuccess,
   logOutUser
