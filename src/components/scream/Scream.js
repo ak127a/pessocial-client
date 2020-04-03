@@ -98,7 +98,7 @@ class Scream extends Component {
         <CardContent className={classes.content}>
           {deleteButton}
 
-          <Typography className={classes.tweetBody} variant="body1">{body}</Typography>
+          <Typography style={{wordBreak: "break-all"}} variant="body1">{body}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="Comments">
