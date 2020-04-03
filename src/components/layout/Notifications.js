@@ -85,7 +85,7 @@ export class Notifications extends Component {
                 variant="body1"
                 to={`/users/${not.recipient}/scream/${not.screamId}`}
               >
-                {not.sender} {verb} your scream {time}
+                {not.sender} {verb} your tweet {time}
               </Typography>
             </MenuItem>
           );

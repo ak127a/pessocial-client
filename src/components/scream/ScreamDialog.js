@@ -125,7 +125,7 @@ class ScreamDialog extends Component {
             {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-          <Typography variant="body1">{body}</Typography>
+          <Typography style={{wordBreak:"break-all"}} variant="body1">{body}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} likes</span>
           <MyButton tip="Comments">

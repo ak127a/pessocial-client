@@ -19,7 +19,8 @@ import Typography from "@material-ui/core/Typography";
 import ChatIcon from "@material-ui/icons/Chat";
 import MyButton from "../../util/MyButton";
 
-const styles = {
+const styles = (theme) => ({
+  ...theme.spread,
   card: {
     position: "relative",
     marginBottom: 20
@@ -44,7 +45,7 @@ const styles = {
     padding: 25,
     objectFit: "cover"
   }
-};
+});
 
 class Scream extends Component {
   render() {
@@ -97,7 +98,7 @@ class Scream extends Component {
         <CardContent className={classes.content}>
           {deleteButton}
 
-          <Typography variant="body1">{body}</Typography>
+          <Typography className={classes.tweetBody} variant="body1">{body}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="Comments">

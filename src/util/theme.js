@@ -37,6 +37,14 @@ export default {
       borderBottom: "1px solid rgba(0,0,0,0.2)",
       marginBottom: "20px"
     },
+    tweetBody : {
+      fontSize: "1rem",
+      fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+      fontWeight: 400,
+      lineHeight: 1.5,
+      letterSpacing: "0.00938em",
+      wordBreak:"break-all"
+    },
     profile: {
       "& .image-wrapper": {
         textAlign: "center",

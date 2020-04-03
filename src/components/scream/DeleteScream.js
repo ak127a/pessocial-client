@@ -49,7 +49,7 @@ class DeleteScream extends Component {
     return (
       <React.Fragment>
         <MyButton
-          tip="Delete Scream"
+          tip="Delete Tweet"
           onClick={this.handleOpen}
           btnClassName={classes.deleteButton}
         >
